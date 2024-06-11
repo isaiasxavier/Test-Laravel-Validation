@@ -37,11 +37,11 @@ class ValidationTest extends TestCase
         $response = $this->actingAs($user)->post('profile', [
             'profile' => [
                 'name' => 'Some name',
-                'email' => 'some@email.com'
-            ]
+                'email' => 'some@email.com',
+            ],
         ]);
         $response->assertStatus(200);
-   }
+    }
 
     public function test_validation_errors_shown_in_blade()
     {
@@ -87,9 +87,9 @@ class ValidationTest extends TestCase
         $updatedUser = [
             'name' => 'Updated name',
             'email' => 'updated@email.com',
-            'is_admin' => 1
+            'is_admin' => 1,
         ];
-        $response = $this->put('users/' . $user->id, $updatedUser);
+        $response = $this->put('users/'.$user->id, $updatedUser);
         $response->assertStatus(200);
 
         $user = User::where('name', $updatedUser['name'])->first();

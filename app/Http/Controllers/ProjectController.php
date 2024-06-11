@@ -8,16 +8,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
-    public function create()
-    {
-        return view('projects.create');
-    }
-
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'description' => 'required'
+            'description' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -28,5 +23,10 @@ class ProjectController extends Controller
         Project::create($validator->validated());
 
         return 'Success';
+    }
+
+    public function create()
+    {
+        return view('projects.create');
     }
 }
